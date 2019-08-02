@@ -1,0 +1,17 @@
+.outer-conteiner {
+    border: 2px solid rgb(93, 15, 236);
+    height: 200px;
+    border-radius: 8px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-around;
+
+    .inner-conteiner {
+        border: 2px solid rgb(0, 133, 71);
+        border-radius: 8px;
+        width: 30%;
+        background-color: beige;
+    }
+
+}
+
