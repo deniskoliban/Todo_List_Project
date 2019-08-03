@@ -1,10 +1,18 @@
-<div class="outer-conteiner">
-    <div class="inner-conteiner left">
-        To Do
-        <app-todo-element></app-todo-element>
+<div class="global-container"></div>
+
+
+<div class="outer-container">
+    <div class="inner-container left">
+        <app-todo-element (changeTaskCondition)="changeTaskCondition($event)" 
+        *ngFor="let task of tasks" [data]="task">
+        </app-todo-element>
+        <button (click)="addToData()">Add new task</button>
+    </div>
+    <div class="inner-container cener">In progress
+        <app-todo-element  *ngFor="let progress of inProgress" [data]="progress">
+        </app-todo-element>
 
     </div>
-    <div class="inner-conteiner cener">In progress</div>
-    <div class="inner-conteiner right">Done</div>
-    
+    <div class="inner-container right">Done</div>
+
 </div>

@@ -1,17 +1,29 @@
-.outer-conteiner {
-    border: 2px solid rgb(93, 15, 236);
-    height: 200px;
+.outer-container {
+    
+    height: auto;
     border-radius: 8px;
-    background-color: aliceblue;
+    
     display: flex;
     justify-content: space-around;
+    
 
-    .inner-conteiner {
+    .inner-container {
         border: 2px solid rgb(0, 133, 71);
         border-radius: 8px;
         width: 30%;
-        background-color: beige;
-    }
+        background-color: aliceblue;
+       
 
+
+        .text {
+            text-align: start ;
+            overflow-x:hidden; 
+        }
+    }
 }
 
+button {
+    padding: 5px;
+    background: rgb(34,193,195 );
+    border-radius: 10px;
+}

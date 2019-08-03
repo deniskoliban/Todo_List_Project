@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-todo-element',
@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoElementComponent implements OnInit {
 
+  @Input() data: any;
+  @Output() changeTaskCondition = new EventEmitter<object>();
+
   constructor() { }
+
+  change(task:any, condition:any) {
+    this.changeTaskCondition.emit({task: task, condition: condition});
+    
+}
 
   ngOnInit() {
   }

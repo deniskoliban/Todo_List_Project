@@ -3,5 +3,6 @@
 .nav-logo {
     border: 5px double red;
     border-radius: 8px;
-    background-color: aliceblue;
+    background: rgb(101,164,255);
+    background: radial-gradient(circle, rgba(101,164,255,1) 44%, rgba(123,225,254,1) 100%);
 }
