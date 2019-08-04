@@ -3,16 +3,18 @@
 
 <div class="outer-container">
     <div class="inner-container left">
-        <app-todo-element (changeTaskCondition)="changeTaskCondition($event)" 
-        *ngFor="let task of tasks" [data]="task">
+        <app-todo-element  *ngFor="let task of toDoTasks" [data]="task" >
         </app-todo-element>
-        <button (click)="addToData()">Add new task</button>
+        <button (click)="addNewTask()">Add new task</button>
     </div>
     <div class="inner-container cener">In progress
-        <app-todo-element  *ngFor="let progress of inProgress" [data]="progress">
+        <app-todo-element (changeTaskCondition)="taskComplete($event)" *ngFor="let progress of inProgressTasks" [data]="progress">
         </app-todo-element>
 
     </div>
-    <div class="inner-container right">Done</div>
+    <div class="inner-container right">Done
+            <app-todo-element  *ngFor="let done of doneTasks" [data]="done">
+            </app-todo-element>
+    </div>
 
 </div>

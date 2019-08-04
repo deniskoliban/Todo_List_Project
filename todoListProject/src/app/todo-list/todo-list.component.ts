@@ -1,5 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { ChangeTaskCondition } from './change-task-condition';
+import { DELETE, TASKS } from '../constants/constants';
+import { Status, Task } from '../services/task-status';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,38 +10,58 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  @Output() data: any;
-
-  tasks: any[] = [];
-  inProgress: any[] = [];
+  
+  toDoTasks: Task[] = [];
+  inProgressTasks: Task[] = [];
+  doneTasks: Task[] = [];
 
   constructor(private dataService: DataService) { }
 
-  addToData() {
-    this.dataService.getData();
-    if ( this.dataService.newTask !== null ) {
-      this.tasks.push(this.dataService.newTask);
-    }  
-    
+  ngOnInit() {
+// TODO: Вынести в отдельный метод
+    this.dataService.data.subscribe(tasks => {
+      this.toDoTasks = [];
+      this.inProgressTasks = [];
+      this.doneTasks = [];
+      tasks.forEach(item => {
+        if (item.status === Status.TODO) {
+          this.toDoTasks.push(item);
+        } else if (item.status === Status.IN_PROGRESS) {
+          this.inProgressTasks.push(item);
+        } else if (item.status === Status.DONE) {
+          this.doneTasks.push(item);
+        }
+      })
+    } )
+
   }
 
-  changeTaskCondition(taskCondition){
-    for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i] == taskCondition.task && taskCondition.condition == 'delete') {
-        this.tasks.splice(i, 1);
-      }else {
-        this.tasks.splice(i, 1);
-        this.inProgress.push(taskCondition.task)
+
+  addNewTask() {
+    this.dataService.addTask();
+  }
+
+
+  
+
+  changeTaskCondition(taskCondition: ChangeTaskCondition){
+   
+
+  }
+
+  taskComplete(complete) {
+    for (let i = 0; i < this.inProgressTasks.length; i++) {
+      if (this.inProgressTasks[i] == complete.task && complete.condition == 'done') {
+        this.inProgressTasks.splice(i, 1);
+        this.doneTasks.push(complete.task);
+
       }
     }
-    console.log(this.tasks );
-    console.log(this.inProgress );
+    console.log(complete);
 
   }
 
 
-  ngOnInit() {
-    
-  }
+  
 
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DELETE } from 'src/app/constants/constants';
+import { ChangeTaskCondition } from '../change-task-condition';
+import { Task, Status } from 'src/app/services/task-status';
+import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-todo-element',
@@ -6,16 +11,23 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./todo-element.component.scss']
 })
 export class TodoElementComponent implements OnInit {
+  
+  @Input() data: Task;
+  @Output() changeTaskCondition = new EventEmitter<Task>();
+  
+  status = Status;
 
-  @Input() data: any;
-  @Output() changeTaskCondition = new EventEmitter<object>();
-
-  constructor() { }
-
-  change(task:any, condition:any) {
-    this.changeTaskCondition.emit({task: task, condition: condition});
+  constructor(private dataService: DataService) { 
     
-}
+  }
+
+  change(status: Status) {
+    this.data.status = status;
+    this.dataService.changeTask(this.data);
+    
+  }
+
+  
 
   ngOnInit() {
   }

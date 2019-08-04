@@ -1,5 +1,7 @@
-<div class="outer-layout">
-    <div>{{data}}</div>
-    <button (click)="change(data, 'delete')">Delete</button>
-    <button (click)="change(data, 'toProgress')" >To progress</button>
+<div *ngIf="data" class="outer-layout">
+    <div>{{data.task}}</div>
+    <button (click)="change(data.task , delete )">Delete</button>
+    <button (click)="change(status.IN_PROGRESS)" >To progress</button>
+    <button (click)="change(data, 'done')" >Done</button>
+    <button (click)="change(data, 'edit')" >Edit...</button>
 </div> 
