@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DELETE } from 'src/app/constants/constants';
-import { ChangeTaskCondition } from '../change-task-condition';
-import { Task, Status } from 'src/app/services/task-status';
+import { Task } from 'src/app/services/task-status';
 import { DataService } from 'src/app/services/data.service';
+import { Status } from 'src/app/services/status-task-enum';
 
 
 @Component({
@@ -13,7 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 export class TodoElementComponent implements OnInit {
   
   @Input() data: Task;
-  @Output() changeTaskCondition = new EventEmitter<Task>();
+ 
   
   status = Status;
 
@@ -21,10 +20,17 @@ export class TodoElementComponent implements OnInit {
     
   }
 
-  change(status: Status) {
+  changeStatus(status: Status) {
     this.data.status = status;
-    this.dataService.changeTask(this.data);
+    this.dataService.changeTaskContent(this.data);
     
+  }
+
+  editTask(taskInfo: Task) {
+    var editTaskValue = prompt("Edit this task", taskInfo.task);
+    this.data.task = editTaskValue;
+    this.dataService.changeTaskContent(this.data);
+  
   }
 
   

@@ -8,7 +8,7 @@
         <button (click)="addNewTask()">Add new task</button>
     </div>
     <div class="inner-container cener">In progress
-        <app-todo-element (changeTaskCondition)="taskComplete($event)" *ngFor="let progress of inProgressTasks" [data]="progress">
+        <app-todo-element *ngFor="let progress of inProgressTasks" [data]="progress">
         </app-todo-element>
 
     </div>
