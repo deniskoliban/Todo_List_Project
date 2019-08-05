@@ -44,17 +44,4 @@ export class TodoListComponent implements OnInit {
     this.dataService.addTask();
   }
 
-
-  
-
-  changeTaskCondition(taskCondition: ChangeTaskCondition){
-   
-
-  }
-
-  
-
-
-  
-
 }
